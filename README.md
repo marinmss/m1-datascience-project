@@ -1,1 +1,3 @@
-# m1-datascience-projcet
+# m1-datascience-project
+
+a README file explaining how to install and run your code
