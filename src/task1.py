@@ -71,7 +71,7 @@ def fetchFacts(wiki_id, page_title):
     #initialize the SPARQL wrapper
     sparql = SPARQLWrapper("http://dbpedia.org/sparql/")
 
-    #first query to retrieve the dbpedia page of the person
+    #first query to retrieve the dbpedia page of the person from the wikipedia page id
     sparql.setQuery(f"""
             PREFIX dbo: <http://dbpedia.org/ontology/>
             PREFIX dbr: <http://dbpedia.org/resource/>
@@ -82,13 +82,10 @@ def fetchFacts(wiki_id, page_title):
                     ?person dbo:wikiPageID {wiki_id} .
             }}
     """)
-    #?person foaf:isPrimaryTopicOf <{wiki_url}> .
-    
     sparql.setReturnFormat(JSON)
     result_link = sparql.query().convert()
 
     person_wikidata_page = result_link["results"]["bindings"][0]["person"]["value"] #the first value is most likely what we are looking for
-    #print(person_wiki_page)
     
     #second query to fetch all information as RDF triples
     sparql.setQuery(f"""
@@ -100,6 +97,7 @@ def fetchFacts(wiki_id, page_title):
     """)
     sparql.setReturnFormat(JSON)
     results_facts = sparql.query().convert()
+    results_facts['results']['bindings'] = (results_facts['results']['bindings'][:100]) #first 100 facts
     results_facts['head']['person'] = page_title.replace(" ", "")
     
     return(results_facts)
