@@ -15,20 +15,21 @@ def fetchBiographies(categorymembers, category, data, number_people, level=0, ma
     
                 #some wikipedia page cannot be found in dbpedia, we ignore them
                 try: 
-                    text = page.text
-                    data.append({'text': text, 'category': category})
-
-                    #creation of txt file for the biography
-                    f = open(f"Biographies_{category}/{(page.title).replace(' ', '')}_{category}.txt", "w")
-                    f.write(text)
-                    f.close()
 
                     #knowledge graph of facts
-                    kg_graph = fetchFacts(page.pageid)
+                    kg_graph = fetchFacts(page.pageid, page.title)
                     # Save the graph of facts to a JSON file
                     with open('knowledge_graph.json', 'a') as json_file:
                         json.dump(kg_graph, json_file, indent=4)
                     print(f"{category} {page.title} processed")
+
+
+                    text = page.text
+                    data.append({'text': text, 'category': category})
+                    #creation of txt file for the biography
+                    f = open(f"Biographies_{category}/{(page.title).replace(' ', '')}_{category}.txt", "w")
+                    f.write(text)
+                    f.close()
 
                     #keep track of people processed
                     number_people += 1  
@@ -64,7 +65,7 @@ def formatData():
     df = pd.DataFrame(data)
     return df
 
-def fetchFacts(wiki_id):
+def fetchFacts(wiki_id, page_title):
     """returns triples of facts about the wikipedia page"""
 
     #initialize the SPARQL wrapper
@@ -99,6 +100,7 @@ def fetchFacts(wiki_id):
     """)
     sparql.setReturnFormat(JSON)
     results_facts = sparql.query().convert()
+    results_facts['head']['person'] = page_title.replace(" ", "")
     
     return(results_facts)
 
