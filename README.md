@@ -23,7 +23,7 @@ In the folder "Biographies", you can find the two sub-folders "Biographies_Journ
 
 # Setup 
 
-Download the folder where this 'README;md' is and install the required packages:
+Download the folder where this 'README.md' is and install the required packages:
 
 ```
 pip install -r requirements.txt
