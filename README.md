@@ -18,6 +18,7 @@ You can run each of the six notebook files separately. These scripts are in the 
 - 'part1_clustering.ipynb'
 - 'part2_named_entity_recognition.ipynb'
 - 'part2_NER_analysis_by_entity_type.ipynb'
+- 'part2_NER_verif_against_kg.ipynb'
 
 In the folder "Biographies", you can find the two sub-folders "Biographies_Journalists" and "Biographies_Sculptors" containing the biographies we retrieved. It is the same structure for "Biographies_double_data" and "Biographies_triple_data" that we use for extending the data for the clustering part.
 
