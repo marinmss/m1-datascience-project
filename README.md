@@ -34,13 +34,13 @@ pip install -r requirements.txt
 
 We set up the number_people < 130 in the collectBiographiesFromCategories() function of 'part1_data_collection.ipynb', it is our base case. You can modify it if you want to explore the effect of increasing data size in the clustering part.
 
-## Quick Test (~ 10 min)
+## Test (~ 10 min)
 
 If you explore each notebook file in order without modifying the setting values, the execution will take you around 10min.
 
 ## Outputs 
 
-Running 'part1_data_collection.ipynb' will create the "Biographie" folder, the subfolders and the .txt files as described above and save the dataframe created as a .csv file that we use in 'data_analysis.ipynb'. The other notebook files will just have the expected outputs according to the instructions of each part of the project.
+Running 'part1_data_collection.ipynb' will create the "Biographies" folder, the subfolders and the .txt files as described above and save the dataframe created as a .csv file that we use in 'data_analysis.ipynb'. The other notebook files will just have the expected outputs according to the instructions of each part of the project.
 
 ## Results 
 
